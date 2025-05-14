@@ -1,1 +1,15 @@
-test
+---
+- block:
+    - name: gather facts
+      vars:
+        vm_instance_name: "{{ variables.server }}"
+        resource_group: "{{ hostvars[vm_instance_name]['resource_group'] }}"
+      ansible.builtin.debug:
+        msg:
+        - "vm_instance_name : {{ vm_instance_name }}"
+        - "resource_group : {{ resource_group }}"
+
+    - name: Set facts
+      ansible.builtin.set_fact:
+        vm_instance_name: "{{ variable.server }}"
+        resource_group: "{{ hostvars[variables.server]['resource_group'] }}"
